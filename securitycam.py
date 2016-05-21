@@ -1,6 +1,7 @@
 import picamera
 import picamera.array
 import numpy as np
+import time
 
 class MyMotionDetector(picamera.array.PiMotionAnalysis):
     def analyse(self, a):
@@ -11,8 +12,11 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
         # If there're more than 10 vectors with a magnitude greater
         # than 60, then say we've detected motion
         if (a > 60).sum() > 10:
-            print('Motion detected!')
-            camera.capture('Spy%03d.jpg', use_video_port=True)
+            for filename incamera.capture_continuous('Spy.jpg', use_video_port=True):
+                print('Motion detected!')
+                print('Captured %s' % filename)
+                time.sleep(5) # wait 5 minutes
+
 
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
