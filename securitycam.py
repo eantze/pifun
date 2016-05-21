@@ -15,7 +15,8 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
             for filename in camera.capture_continuous('Spy{counter:03d}.jpg', use_video_port=True):
                 print('Motion detected!')
                 print('Captured %s' % filename)
-                time.sleep(5) # wait 5 minutes
+                time.sleep(2)
+                # wait 5 minutes
 
 
 with picamera.PiCamera() as camera:
@@ -25,5 +26,5 @@ with picamera.PiCamera() as camera:
         '/dev/null', format='h264',
         motion_output=MyMotionDetector(camera)
         )
-    camera.wait_recording(30)
+    camera.wait_recording(3000)
     camera.stop_recording()
