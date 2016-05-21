@@ -12,7 +12,7 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
         # than 60, then say we've detected motion
         if (a > 60).sum() > 10:
             print('Motion detected!')
-            camera.capture('Spy%03d.jpg')
+            camera.capture('Spy%03d.jpg', use_video_port=True)
 
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
