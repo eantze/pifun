@@ -12,7 +12,7 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
         # If there're more than 10 vectors with a magnitude greater
         # than 60, then say we've detected motion
         if (a > 60).sum() > 10:
-            for filename in camera.capture_continuous('Spy.jpg', use_video_port=True):
+            for filename in camera.capture_continuous('Spy{counter:03d}.jpg', use_video_port=True):
                 print('Motion detected!')
                 print('Captured %s' % filename)
                 time.sleep(5) # wait 5 minutes
